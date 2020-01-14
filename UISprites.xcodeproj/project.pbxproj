@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		348F9F5D23CE15440007FC65 /* UISprites.h in Headers */ = {isa = PBXBuildFile; fileRef = 348F9F5B23CE15440007FC65 /* UISprites.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		348F9F6423CE16670007FC65 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F9F6323CE16670007FC65 /* Sprites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		348F9F5823CE15440007FC65 /* UISprites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UISprites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		348F9F5B23CE15440007FC65 /* UISprites.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISprites.h; sourceTree = "<group>"; };
 		348F9F5C23CE15440007FC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		348F9F6323CE16670007FC65 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				348F9F5B23CE15440007FC65 /* UISprites.h */,
 				348F9F5C23CE15440007FC65 /* Info.plist */,
+				348F9F6323CE16670007FC65 /* Sprites.swift */,
 			);
 			path = UISprites;
 			sourceTree = "<group>";
@@ -95,6 +98,7 @@
 				TargetAttributes = {
 					348F9F5723CE15440007FC65 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -131,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348F9F6423CE16670007FC65 /* Sprites.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +265,7 @@
 		348F9F6123CE15440007FC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9GZ8FVR7LN;
@@ -276,6 +282,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jaypeeff.UISprites;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -284,6 +291,7 @@
 		348F9F6223CE15440007FC65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9GZ8FVR7LN;
