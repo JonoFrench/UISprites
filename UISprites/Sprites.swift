@@ -8,7 +8,7 @@
 
 import UIKit
 
-let colors:[UIColor] = [.clear,.white,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray]
+public let colors:[UIColor] = [.clear,.white,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.black,.blue,.white,.clear,.magenta]
 let deadColors:[UIColor] = [.red,.orange,.yellow]
 
 protocol Animates {
@@ -17,7 +17,7 @@ protocol Animates {
     mutating func animate()
 }
 
-class UISprite {
+public class UISprite {
     
     var height:Int = 0
     var width:Int = 0
@@ -25,7 +25,7 @@ class UISprite {
     var coloursArray:[Int] = []
     var animateArray:[[Int]] = [[]]
     var viewArray:[UIView] = []
-    var spriteView:UIView?
+    public var spriteView:UIView?
     var pixWidth:Int = 0
     var pixHeight:Int = 0
     var frames: Int = 0
@@ -33,7 +33,7 @@ class UISprite {
     var isDead:Bool = false
     var isDying:Bool = false
     
-    init(pos:CGPoint,height:Int,width:Int,animateArray:[[Int]],frameWith:Int,frameHeight:Int,frames:Int) {
+    public init(pos:CGPoint,height:Int,width:Int,animateArray:[[Int]],frameWith:Int,frameHeight:Int,frames:Int) {
         self.position = pos
         self.height = height
         self.width = width
@@ -47,7 +47,7 @@ class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,animateArray[0],spriteView!)
     }
     
-    init(pos:CGPoint,height:Int,width:Int,coloursArray:[Int],frameWith:Int,frameHeight:Int,frames:Int) {
+    public init(pos:CGPoint,height:Int,width:Int,coloursArray:[Int],frameWith:Int,frameHeight:Int,frames:Int) {
         self.position = pos
         self.height = height
         self.width = width
@@ -151,8 +151,17 @@ extension UISprite {
             startAnimating()
         }
     }
-}
+    
 
+    public func reDraw(coloursArray:[Int]) {
+        self.coloursArray = coloursArray
+
+        for (index, item) in coloursArray.enumerated() {
+            viewArray[index].backgroundColor = colors[item]
+            //pixels[index].backgroundColor = colors[item]
+        }
+    }
+}
 
 
 
