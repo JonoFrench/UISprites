@@ -9,29 +9,29 @@
 import UIKit
 
 public let colors:[UIColor] = [.clear,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.purple,.black,.lightGray,.gray,.darkGray,.white]
-let deadColors:[UIColor] = [.red,.orange,.yellow]
+public let deadColors:[UIColor] = [.red,.orange,.yellow]
 
-protocol Animates {
+public protocol Animates {
     var frames:Int {get set}
     var animateArray:[[Int]] {get set}
     mutating func animate()
 }
 
-public class UISprite {
+open class UISprite {
     
     var height:Int = 0
     var width:Int = 0
     var colour:UIColor = UIColor.clear
-    var coloursArray:[Int] = []
-    var animateArray:[[Int]] = [[]]
-    var viewArray:[UIView] = []
+    public var coloursArray:[Int] = []
+    public var animateArray:[[Int]] = [[]]
+    public var viewArray:[UIView] = []
     public var spriteView:UIView?
-    var pixWidth:Int = 0
-    var pixHeight:Int = 0
-    var frames: Int = 0
-    var currentFrame = 0
-    var isDead:Bool = false
-    var isDying:Bool = false
+    public var pixWidth:Int = 0
+    public var pixHeight:Int = 0
+    public var frames: Int = 0
+    public var currentFrame = 0
+    public var isDead:Bool = false
+    public var isDying:Bool = false
     
     public init(pos:CGPoint,height:Int,width:Int,animateArray:[[Int]],frameWith:Int,frameHeight:Int,frames:Int) {
         self.position = pos
@@ -61,7 +61,7 @@ public class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,coloursArray,spriteView!)
     }
     
-    var position:CGPoint = CGPoint(x: 0, y: 0) {
+    public var position:CGPoint = CGPoint(x: 0, y: 0) {
         didSet{
             if let v = spriteView {
                 v.center = position
@@ -69,7 +69,7 @@ public class UISprite {
         }
     }
     
-    func checkHit(pos:CGPoint) -> Bool {
+    open func checkHit(pos:CGPoint) -> Bool {
         guard !isDead else {
             return false
         }
@@ -87,7 +87,7 @@ public class UISprite {
         return false
     }
     
-    func checkHit(pos:CGRect) -> Bool {
+    open func checkHit(pos:CGRect) -> Bool {
         guard !isDead else {
             return false
         }
@@ -104,7 +104,7 @@ public class UISprite {
         return false
     }
     
-    func move(x:Int,y:Int) {
+    public func move(x:Int,y:Int) {
         var newPos = position
         newPos.x = newPos.x + CGFloat(x)
         newPos.y = newPos.y + CGFloat(y)
@@ -114,7 +114,7 @@ public class UISprite {
 }
 
 extension UISprite {
-    func startAnimating(){
+    public func startAnimating(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.animate()
         }
@@ -122,7 +122,7 @@ extension UISprite {
 }
 
 extension UISprite {
-    func animate() {
+    open func animate() {
         if isDying && !isDead {
             UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
             UIView.animate(withDuration: 1.0, delay: 0.0, options: [], animations: {
@@ -165,7 +165,7 @@ extension UISprite {
 
 
 
-func animate(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
+public func animate(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
     let cols = coloursArray[frame]
     for (index, item) in cols.enumerated() {
         pixels[index].backgroundColor = colors[item]
@@ -173,7 +173,7 @@ func animate(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
     
 }
 
-func animateDying(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
+public func animateDying(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
     let cols = coloursArray[frame]
     for (index, item) in cols.enumerated() {
         pixels[index].backgroundColor = colors[item]
