@@ -8,7 +8,9 @@
 
 import UIKit
 
-public let colors:[UIColor] = [.clear,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.purple,.black,.lightGray,.gray,.darkGray,.white]
+//[.clear,.white,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray]
+public let colors:[UIColor] =
+[.clear,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.purple,.black,.lightGray,.gray,.darkGray,.white]
 public let deadColors:[UIColor] = [.red,.orange,.yellow]
 
 public protocol Animates {
