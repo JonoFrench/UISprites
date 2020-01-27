@@ -9,8 +9,6 @@
 import UIKit
 
 //[.clear,.white,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray]
-public let alphaColors:[UIColor] =
-[.clear,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.purple,.black,.lightGray,.gray,.darkGray,.white]
 public let deadColors:[UIColor] = [.red,.orange,.yellow]
 
 public protocol Animates {
@@ -49,12 +47,12 @@ open class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,animateArray[0],spriteView!)
     }
     
-    public init(pos:CGPoint,height:Int,width:Int,coloursArray:[UIColor],frameWith:Int,frameHeight:Int,frames:Int) {
+    public init(pos:CGPoint,height:Int,width:Int,coloursArray:[UIColor],frameWith:Int,frameHeight:Int) {
         self.position = pos
         self.height = height
         self.width = width
         self.coloursArray = coloursArray
-        self.frames = frames
+        self.frames = 1
         self.pixWidth = frameWith
         self.pixHeight = frameHeight
         
@@ -126,7 +124,8 @@ extension UISprite {
 extension UISprite {
     open func animate() {
         if isDying && !isDead {
-            UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
+            //UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
+            self.animateMeDying()
             UIView.animate(withDuration: 1.0, delay: 0.0, options: [], animations: {
                 self.isDead = true
                 self.spriteView?.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
@@ -137,15 +136,16 @@ extension UISprite {
             })
             startAnimating()
         } else if isDying {
-            UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
+            //UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
+            self.animateMeDying()
             currentFrame += 1
             if currentFrame == self.frames {
                 currentFrame = 0
             }
             startAnimating()
         } else if !isDead && !isDying {
-            
-            UISprites.animate(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
+            self.animateMe()
+            //UISprites.animate(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
             currentFrame += 1
             if currentFrame == self.frames {
                 currentFrame = 0
@@ -154,7 +154,30 @@ extension UISprite {
         }
     }
     
-
+    
+    private func animateMe() -> Void {
+    //    pixels.enumerated().map {(index, view) in view.backgroundColor = coloursArray[frame,index] }
+        //pixels.map { $0.backgroundColor = coloursArray}
+        let cols = animateArray[currentFrame]
+        for (index, item) in cols.enumerated() {
+            viewArray[index].backgroundColor = item
+        }
+        
+    }
+    
+    private func animateMeDying() -> Void {
+        
+        for (index, item) in animateArray[currentFrame].enumerated() {
+            viewArray[index].backgroundColor = item
+        }
+        for p in viewArray {
+            if p.backgroundColor?.cgColor.alpha != 0 {
+                let i = Int.random(in: 0 ..< 3)
+                p.backgroundColor = deadColors[i]
+            }
+        }
+    }
+    
     public func reDraw(coloursArray:[UIColor]) {
         self.coloursArray = coloursArray
 
@@ -163,36 +186,41 @@ extension UISprite {
             //pixels[index].backgroundColor = colors[item]
         }
     }
-}
-
-
-
-public func animate(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
-//    let _ = pixels.map{ view in view.backgroundColor.map { _ in return coloursArray[frame] } }
-    //let _ = pixels.map{ $0.backgroundColor { _ in return coloursArray[frame] } }
-
-//    let _ = coloursArray[frame].map {col in pixels.map { $0.backgroundColor = col}}
-//    let _ = pixels.enumerated().map {(offset: Int, element: UIView) in return element.backgroundColor = coloursArray[frame,offset] }
-    //pixels.map { $0.backgroundColor = coloursArray}
-    let cols = coloursArray[frame]
-    for (index, item) in cols.enumerated() {
-        pixels[index].backgroundColor = item
-    }
     
+    public func rotateMe(){
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+                self.spriteView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            }, completion: nil)
+        UIView.animate(withDuration: 0.5, delay: 0.25, options: [], animations: {
+                           self.spriteView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2)
+        }, completion: nil)
+    }
 }
 
-public func animateDying(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
-    let cols = coloursArray[frame]
-    for (index, item) in cols.enumerated() {
-        pixels[index].backgroundColor = item
-    }
-    for p in pixels {
-        if p.backgroundColor?.cgColor.alpha != 0 {
-            let i = Int.random(in: 0 ..< 3)
-            p.backgroundColor = deadColors[i]
-        }
-    }
-}
+
+
+//public func animate(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
+////    pixels.enumerated().map {(index, view) in view.backgroundColor = coloursArray[frame,index] }
+//    //pixels.map { $0.backgroundColor = coloursArray}
+//    //let cols = coloursArray[frame]
+//    for (index, item) in coloursArray[frame].enumerated() {
+//        pixels[index].backgroundColor = item
+//    }
+//
+//}
+//
+//public func animateDying(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
+//
+//    for (index, item) in coloursArray[frame].enumerated() {
+//        pixels[index].backgroundColor = item
+//    }
+//    for p in pixels {
+//        if p.backgroundColor?.cgColor.alpha != 0 {
+//            let i = Int.random(in: 0 ..< 3)
+//            p.backgroundColor = deadColors[i]
+//        }
+//    }
+//}
 
 let layoutSprite = {(pixWidth:Int,pixHeight:Int,coloursArray:[UIColor],spriteView:UIView) -> [UIView] in
     var viewArray:[UIView] = []
