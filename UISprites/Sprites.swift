@@ -9,13 +9,13 @@
 import UIKit
 
 //[.clear,.white,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray]
-public let colors:[UIColor] =
+public let alphaColors:[UIColor] =
 [.clear,.red,.blue,.green,.yellow,.magenta,.cyan,.orange,.brown,.lightGray,.purple,.black,.lightGray,.gray,.darkGray,.white]
 public let deadColors:[UIColor] = [.red,.orange,.yellow]
 
 public protocol Animates {
     var frames:Int {get set}
-    var animateArray:[[Int]] {get set}
+    var animateArray:[[UIColor]] {get set}
     mutating func animate()
 }
 
@@ -24,8 +24,8 @@ open class UISprite {
     var height:Int = 0
     var width:Int = 0
     var colour:UIColor = UIColor.clear
-    public var coloursArray:[Int] = []
-    public var animateArray:[[Int]] = [[]]
+    public var coloursArray:[UIColor] = []
+    public var animateArray:[[UIColor]] = [[]]
     public var viewArray:[UIView] = []
     public var spriteView:UIView?
     public var pixWidth:Int = 0
@@ -35,7 +35,7 @@ open class UISprite {
     public var isDead:Bool = false
     public var isDying:Bool = false
     
-    public init(pos:CGPoint,height:Int,width:Int,animateArray:[[Int]],frameWith:Int,frameHeight:Int,frames:Int) {
+    public init(pos:CGPoint,height:Int,width:Int,animateArray:[[UIColor]],frameWith:Int,frameHeight:Int,frames:Int) {
         self.position = pos
         self.height = height
         self.width = width
@@ -49,7 +49,7 @@ open class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,animateArray[0],spriteView!)
     }
     
-    public init(pos:CGPoint,height:Int,width:Int,coloursArray:[Int],frameWith:Int,frameHeight:Int,frames:Int) {
+    public init(pos:CGPoint,height:Int,width:Int,coloursArray:[UIColor],frameWith:Int,frameHeight:Int,frames:Int) {
         self.position = pos
         self.height = height
         self.width = width
@@ -155,11 +155,11 @@ extension UISprite {
     }
     
 
-    public func reDraw(coloursArray:[Int]) {
+    public func reDraw(coloursArray:[UIColor]) {
         self.coloursArray = coloursArray
 
         for (index, item) in coloursArray.enumerated() {
-            viewArray[index].backgroundColor = colors[item]
+            viewArray[index].backgroundColor = item
             //pixels[index].backgroundColor = colors[item]
         }
     }
@@ -167,28 +167,34 @@ extension UISprite {
 
 
 
-public func animate(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
+public func animate(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
+//    let _ = pixels.map{ view in view.backgroundColor.map { _ in return coloursArray[frame] } }
+    //let _ = pixels.map{ $0.backgroundColor { _ in return coloursArray[frame] } }
+
+//    let _ = coloursArray[frame].map {col in pixels.map { $0.backgroundColor = col}}
+//    let _ = pixels.enumerated().map {(offset: Int, element: UIView) in return element.backgroundColor = coloursArray[frame,offset] }
+    //pixels.map { $0.backgroundColor = coloursArray}
     let cols = coloursArray[frame]
     for (index, item) in cols.enumerated() {
-        pixels[index].backgroundColor = colors[item]
+        pixels[index].backgroundColor = item
     }
     
 }
 
-public func animateDying(coloursArray:[[Int]],frame:Int,pixels:[UIView]) -> Void {
+public func animateDying(coloursArray:[[UIColor]],frame:Int,pixels:[UIView]) -> Void {
     let cols = coloursArray[frame]
     for (index, item) in cols.enumerated() {
-        pixels[index].backgroundColor = colors[item]
+        pixels[index].backgroundColor = item
     }
     for p in pixels {
-        if p.backgroundColor != .clear {
+        if p.backgroundColor?.cgColor.alpha != 0 {
             let i = Int.random(in: 0 ..< 3)
             p.backgroundColor = deadColors[i]
         }
     }
 }
 
-let layoutSprite = {(pixWidth:Int,pixHeight:Int,coloursArray:[Int],spriteView:UIView) -> [UIView] in
+let layoutSprite = {(pixWidth:Int,pixHeight:Int,coloursArray:[UIColor],spriteView:UIView) -> [UIView] in
     var viewArray:[UIView] = []
     var constraintsArray:[NSLayoutConstraint] = []
     let wid = Int(spriteView.frame.width) / pixWidth
@@ -225,7 +231,7 @@ let layoutSprite = {(pixWidth:Int,pixHeight:Int,coloursArray:[Int],spriteView:UI
             constraintsArray.append(leftPixelConstraint(v,viewArray[w-1]))
         }
         
-        v.backgroundColor = colors[p]
+        v.backgroundColor = p
         viewArray.append(v)
         spriteView.addSubview(v)
         
