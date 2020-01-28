@@ -13,7 +13,7 @@ public let deadColors:[UIColor] = [.red,.orange,.yellow]
 
 public protocol Animates {
     var frames:Int {get set}
-    var animateArray:[[UIColor]] {get set}
+   // var animateArray:[[UIColor]] {get set}
     mutating func animate()
 }
 
@@ -23,8 +23,8 @@ open class UISprite {
     var width:Int = 0
     var colour:UIColor = UIColor.clear
     var animationSpeed:Double = 0.1
-    public var coloursArray:[UIColor] = []
-    public var animateArray:[[UIColor]] = [[]]
+    var coloursArray:[UIColor] = []
+    var animateArray:[[UIColor]] = [[]]
     public var viewArray:[UIView] = []
     public var spriteView:UIView?
     public var pixWidth:Int = 0
@@ -175,10 +175,10 @@ extension UISprite {
 //        for (index, item) in animateArray[currentFrame].enumerated() {
 //            viewArray[index].backgroundColor = item
 //        }
-        let _ = viewArray.map { if $0.backgroundColor?.cgColor.alpha != 0 {
+        let _ = viewArray.filter{ $0.backgroundColor?.cgColor.alpha != 0 }.map {
             let i = Int.random(in: 0 ..< 3)
             $0.backgroundColor = deadColors[i]
-        } }
+         }
 //        for p in viewArray {
 //            if p.backgroundColor?.cgColor.alpha != 0 {
 //                let i = Int.random(in: 0 ..< 3)
@@ -189,11 +189,12 @@ extension UISprite {
     
     public func reDraw(coloursArray:[UIColor]) {
         self.coloursArray = coloursArray
+        let _ = coloursArray.enumerated().map {(index, item) in viewArray[index].backgroundColor = item }
 
-        for (index, item) in coloursArray.enumerated() {
-            viewArray[index].backgroundColor = item
-            //pixels[index].backgroundColor = colors[item]
-        }
+//        for (index, item) in coloursArray.enumerated() {
+//            viewArray[index].backgroundColor = item
+//            //pixels[index].backgroundColor = colors[item]
+//        }
     }
     
     public func rotateMe(){
