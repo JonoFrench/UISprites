@@ -251,7 +251,7 @@ let layoutSprite = {(pixWidth:Int,pixHeight:Int,coloursArray:[UIColor],spriteVie
             //print("Top row \(w)")
             constraintsArray.append(topConstraint(v,spriteView))
         }
-        else if w >= pixHeight * (pixWidth - 1) { //bottom row
+        else if w >= (pixHeight - 1) * (pixWidth ) { //bottom row
             //print("Bottom row \(w)")
             constraintsArray.append(bottomConstraint(v,spriteView))
         } else {
