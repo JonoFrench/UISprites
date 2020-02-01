@@ -33,7 +33,8 @@ open class UISprite {
     public var currentFrame = 0
     public var isDead:Bool = false
     public var isDying:Bool = false
-    
+    public var stopAnimating:Bool = false
+
     public init(pos:CGPoint,height:Int,width:Int,animateArray:[[UIColor]],frameWith:Int,frameHeight:Int,frames:Int,speed:Double = 0.1) {
         self.position = pos
         self.height = height
@@ -117,7 +118,16 @@ open class UISprite {
 
 extension UISprite {
     public func startAnimating(){
+        stopAnimating = false
         DispatchQueue.main.asyncAfter(deadline: .now() + animationSpeed) {
+            self.animate()
+        }
+    }
+}
+extension UISprite {
+    public func startAnimatingNow(){
+        stopAnimating = false
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.animate()
         }
     }
@@ -125,6 +135,9 @@ extension UISprite {
 
 extension UISprite {
     open func animate() {
+        if stopAnimating {            
+            return
+        }
         if isDying && !isDead {
             //UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
             self.animateMeDying()
@@ -141,7 +154,7 @@ extension UISprite {
             //UISprites.animateDying(coloursArray: animateArray,frame: currentFrame,pixels: viewArray)
             self.animateMeDying()
             currentFrame += 1
-            if currentFrame == self.frames {
+            if currentFrame == self.frames{
                 currentFrame = 0
             }
             startAnimating()
@@ -205,6 +218,14 @@ extension UISprite {
                            self.spriteView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2)
         }, completion: nil)
     }
+    
+    public func rotateMeTo(angle:CGFloat,duration:Double) {
+            UIView.animate(withDuration: duration, delay: 0.0, options: [], animations: {
+                self.spriteView!.transform = CGAffineTransform(rotationAngle: CGFloat(angle * .pi/180))
+            }, completion: { (finished: Bool) in }
+        )
+    }
+    
 }
 
 
