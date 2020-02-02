@@ -64,6 +64,12 @@ open class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,coloursArray,spriteView!)
     }
     
+    deinit {
+        for v in spriteView!.subviews {
+            v.removeFromSuperview()
+        }
+    }
+    
     public var position:CGPoint = CGPoint(x: 0, y: 0) {
         didSet{
             if let v = spriteView {
