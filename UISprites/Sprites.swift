@@ -64,12 +64,12 @@ open class UISprite {
         viewArray = layoutSprite(pixWidth,pixHeight,coloursArray,spriteView!)
     }
     
-    deinit {
-        print("deinit sprite")
-        for v in spriteView!.subviews {
-            v.removeFromSuperview()
-        }
-    }
+//    deinit {
+//        print("deinit sprite")
+//        for v in spriteView!.subviews {
+//            v.removeFromSuperview()
+//        }
+//    }
     
     public var position:CGPoint = CGPoint(x: 0, y: 0) {
         didSet{
@@ -155,6 +155,7 @@ extension UISprite {
             }, completion: { (finished: Bool) in
                 self.spriteView?.removeFromSuperview()
                 self.isDying = false
+                self.stopAnimating = true
             })
             startAnimating()
         } else if isDying {
