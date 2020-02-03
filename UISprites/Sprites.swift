@@ -65,6 +65,7 @@ open class UISprite {
     }
     
     deinit {
+        print("deinit sprite")
         for v in spriteView!.subviews {
             v.removeFromSuperview()
         }
