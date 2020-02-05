@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		348F9F5D23CE15440007FC65 /* UISprites.h in Headers */ = {isa = PBXBuildFile; fileRef = 348F9F5B23CE15440007FC65 /* UISprites.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		348F9F6423CE16670007FC65 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F9F6323CE16670007FC65 /* Sprites.swift */; };
+		34C882B223E8B4920018BB21 /* UISpritesTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C882B023E8B4920018BB21 /* UISpritesTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		34C882E723E8B5BF0018BB21 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F9F6323CE16670007FC65 /* Sprites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,10 +19,20 @@
 		348F9F5B23CE15440007FC65 /* UISprites.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISprites.h; sourceTree = "<group>"; };
 		348F9F5C23CE15440007FC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		348F9F6323CE16670007FC65 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
+		34C882AE23E8B4920018BB21 /* UISpritesTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UISpritesTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C882B023E8B4920018BB21 /* UISpritesTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISpritesTV.h; sourceTree = "<group>"; };
+		34C882B123E8B4920018BB21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		348F9F5523CE15440007FC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C882AB23E8B4920018BB21 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				348F9F5A23CE15440007FC65 /* UISprites */,
+				34C882AF23E8B4920018BB21 /* UISpritesTV */,
 				348F9F5923CE15440007FC65 /* Products */,
 				3481DC3023D88F8900FA7FF6 /* Frameworks */,
 			);
@@ -51,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				348F9F5823CE15440007FC65 /* UISprites.framework */,
+				34C882AE23E8B4920018BB21 /* UISpritesTV.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +79,15 @@
 			path = UISprites;
 			sourceTree = "<group>";
 		};
+		34C882AF23E8B4920018BB21 /* UISpritesTV */ = {
+			isa = PBXGroup;
+			children = (
+				34C882B023E8B4920018BB21 /* UISpritesTV.h */,
+				34C882B123E8B4920018BB21 /* Info.plist */,
+			);
+			path = UISpritesTV;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -73,6 +96,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				348F9F5D23CE15440007FC65 /* UISprites.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C882A923E8B4920018BB21 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C882B223E8B4920018BB21 /* UISpritesTV.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +128,24 @@
 			productReference = 348F9F5823CE15440007FC65 /* UISprites.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		34C882AD23E8B4920018BB21 /* UISpritesTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C882B523E8B4920018BB21 /* Build configuration list for PBXNativeTarget "UISpritesTV" */;
+			buildPhases = (
+				34C882A923E8B4920018BB21 /* Headers */,
+				34C882AA23E8B4920018BB21 /* Sources */,
+				34C882AB23E8B4920018BB21 /* Frameworks */,
+				34C882AC23E8B4920018BB21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UISpritesTV;
+			productName = UISpritesTV;
+			productReference = 34C882AE23E8B4920018BB21 /* UISpritesTV.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -109,6 +158,9 @@
 					348F9F5723CE15440007FC65 = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1130;
+					};
+					34C882AD23E8B4920018BB21 = {
+						CreatedOnToolsVersion = 11.3.1;
 					};
 				};
 			};
@@ -126,12 +178,20 @@
 			projectRoot = "";
 			targets = (
 				348F9F5723CE15440007FC65 /* UISprites */,
+				34C882AD23E8B4920018BB21 /* UISpritesTV */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		348F9F5623CE15440007FC65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C882AC23E8B4920018BB21 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,6 +206,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				348F9F6423CE16670007FC65 /* Sprites.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C882AA23E8B4920018BB21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C882E723E8B5BF0018BB21 /* Sprites.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +347,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9GZ8FVR7LN;
@@ -315,7 +383,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -345,6 +413,62 @@
 			};
 			name = Release;
 		};
+		34C882B323E8B4920018BB21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9GZ8FVR7LN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = UISpritesTV/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "-DTVOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaypeeff.UISpritesTV;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+				TV_BUILD = YES;
+			};
+			name = Debug;
+		};
+		34C882B423E8B4920018BB21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9GZ8FVR7LN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = UISpritesTV/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "-DTVOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaypeeff.UISpritesTV;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+				TV_BUILD = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -362,6 +486,15 @@
 			buildConfigurations = (
 				348F9F6123CE15440007FC65 /* Debug */,
 				348F9F6223CE15440007FC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C882B523E8B4920018BB21 /* Build configuration list for PBXNativeTarget "UISpritesTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C882B323E8B4920018BB21 /* Debug */,
+				34C882B423E8B4920018BB21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

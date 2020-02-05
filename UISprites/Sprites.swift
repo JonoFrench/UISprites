@@ -86,11 +86,14 @@ open class UISprite {
         if let spriteView = spriteView {
             if spriteView.frame.contains(pos){
                 isDying = true
-                if #available(iOS 10.0, *) {
+
+                #if !TVOS
+                if #available(iOS 10.0, *),#available(tvOS 13.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .heavy)
                     generator.impactOccurred()
-                    
                 }
+                #endif
+
                 return true
             }
         }
@@ -104,10 +107,12 @@ open class UISprite {
         if let spriteView = spriteView {
             if spriteView.frame.intersects(pos) {
                 isDying = true
+                #if !TVOS
                 if #available(iOS 10.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .heavy)
                     generator.impactOccurred()
                 }
+                #endif
                 return true
             }
         }
