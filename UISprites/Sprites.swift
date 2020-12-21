@@ -223,6 +223,12 @@ extension UISprite {
 //        }
     }
     
+    public func reDrawView(coloursArray:[UIColor]) -> UIView {
+        self.coloursArray = coloursArray
+        let _ = coloursArray.enumerated().map {(index, item) in viewArray[index].backgroundColor = item }
+        return self.spriteView!
+    }
+    
     public func rotateMe(){
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
                 self.spriteView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
